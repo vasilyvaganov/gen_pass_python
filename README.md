@@ -9,3 +9,4 @@ Allows you to generate a password of 10 characters (gen_pass.exe) by left-clicki
 Everything can be run in gen_pass.exe.
 
 ![Image alt](https://github.com/vasilyvaganov/gen_pass_python/blob/main/amLUWDfHOB4.jpg)
+![Image alt](https://github.com/vasilyvaganov/gen_pass_python/blob/main/0vNLaj4SmnU.jpg)
