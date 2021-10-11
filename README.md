@@ -8,5 +8,9 @@
 Allows you to generate a password of 10 characters (gen_pass.exe) by left-clicking on a button in the tray, and also allows you to generate a different number of passwords, different size of passwords (utility.exe).
 Everything can be run in gen_pass.exe.
 
+
+[picture = ru]
 ![Image alt](https://github.com/vasilyvaganov/gen_pass_python/blob/main/amLUWDfHOB4.jpg)
+
+
 ![Image alt](https://github.com/vasilyvaganov/gen_pass_python/blob/main/0vNLaj4SmnU.jpg)
