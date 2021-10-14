@@ -8,7 +8,9 @@ import locale
 import os
 import ctypes
 import configparser
+from datetime import datetime
 config = configparser.ConfigParser()
+d=datetime.today()
 
 def createConfig(path):
     try:                                            # file search
@@ -35,11 +37,11 @@ if not os.path.exists(path):
 TRAY_TOOLTIP = 'Gen Pass' 
 aReg = ConnectRegistry(None,HKEY_CURRENT_USER)
 aKey = OpenKey(aReg, r"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize")
-keyname = EnumValue(aKey, 2)
-print(keyname[1])
-if keyname[1] == 1:
+AppsUseLightTheme = EnumValue(aKey, 2)
+SystemUsesLightTheme = EnumValue(aKey, 3)
+if SystemUsesLightTheme[1] == 1:
     TRAY_ICON = 'resourses/ico_dark.png' 
-elif keyname[1] == 0:
+elif SystemUsesLightTheme[1] == 0:
     TRAY_ICON = "resourses/ico_white.png"
 lang = locale.getdefaultlocale()[0][:2]
 if lang == "ru":
@@ -49,6 +51,7 @@ if lang == "ru":
     warning_1 = "Отсутствует файл gen_pass.exe"
     warning_2 = "Внимание!"
     warning_3 = "Все пароли сохраняются в документ под названием gen_pass.txt только локально для вашего удобства и никуда не отправляются!"
+    created_1 = "Создано"
 elif lang == "en" or lang != "en" and lang!= "ru":
     exit_1= "Exit"
     open_file_1 = "Open file gen_pass.txt"
@@ -56,6 +59,7 @@ elif lang == "en" or lang != "en" and lang!= "ru":
     warning_1 = "File missing gen_pass.exe"
     warning_2 = "Attention!"
     warning_3 = "All passwords are saved in a document called gen_pass.txt only locally for your convenience and are not sent anywhere!"
+    created_1 = "Created"
 
 def warning():
     ctypes.windll.user32.MessageBoxW(0, warning_3, warning_2, 16)
@@ -110,8 +114,9 @@ def gen_pass_for_tray():
     print('\n')
     pyperclip.copy('\n'.join(psw))
     
-    file = open(path, "a")
+    file = open(path, "a",encoding="utf-8")
     file.write('\n')
+    file.write(''.join((str(created_1)," ",str(d.year),'.',str(d.month),'.',str(d.day)," [",str(d.hour),":",str(d.minute),":",str(d.second),"] :",'\n')))
     file.write('\n'.join(psw))
     file.write('\n')
     file.close()

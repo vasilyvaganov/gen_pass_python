@@ -6,11 +6,13 @@ import ctypes
 import configparser
 import os
 import locale
+from datetime import datetime
 
 
 
 lang = locale.getdefaultlocale()[0][:2]
 config = configparser.ConfigParser()
+d=datetime.today()
 
 
 
@@ -108,8 +110,9 @@ def gen_pass_ru():
     print('\n'.join(psw))
     print('\n')
 
-    file = open(path, "a")
+    file = open(path, "a",encoding="utf-8")
     file.write('\n')
+    file.write(''.join(("Создано ",str(d.year),'.',str(d.month),'.',str(d.day)," [",str(d.hour),":",str(d.minute),":",str(d.second),"] :",'\n')))
     file.write('\n'.join(psw))
     file.write('\n')
     file.close()
@@ -179,10 +182,11 @@ def gen_pass_eng():
     print('\n'.join(psw))
     print('\n')
 
-    file = open(path, "a")
+    file = open(path, "a",encoding="utf-8")
     file.write('\n')
+    file.write('\n')
+    file.write(''.join(("Created ",str(d.year),'.',str(d.month),'.',str(d.day)," [",str(d.hour),":",str(d.minute),":",str(d.second),"] :",'\n')))
     file.write('\n'.join(psw))
-    file.write('\n')
     file.close()
 
     k=input("press enter to continue...")
